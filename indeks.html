@@ -2,11 +2,101 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merhaba GitHub Pages</title>
+  <title>Mektup</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #ffe6f0; /* açık pembe */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .envelope-container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      cursor: pointer;
+      perspective: 1000px;
+    }
+
+    .envelope {
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      border: 2px solid #cc3366;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transition: transform 1s;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><text y="25" font-size="20">❤️</text></svg>');
+      background-repeat: repeat;
+      background-size: 30px 30px;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background-color: #fff;
+      border-bottom: 2px solid #cc3366;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      transform-origin: top;
+      transition: transform 1s;
+      z-index: 2;
+      background-image: inherit; /* kalpler flap'te de gözüksün */
+      background-repeat: inherit;
+      background-size: inherit;
+    }
+
+    .letter {
+      position: absolute;
+      top: 100%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+      background-color: #fff;
+      border: 1px solid #999;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.5;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: top 1s;
+      z-index: 1;
+    }
+
+    .open .flap {
+      transform: rotateX(-180deg);
+    }
+
+    .open .letter {
+      top: 10%;
+    }
+  </style>
 </head>
 <body>
-  <h1>Sayfam çalışıyor 🎉</h1>
-  <p>Bu benim ilk GitHub Pages denemem.</p>
+
+  <div class="envelope-container" onclick="openEnvelope()">
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="letter">
+        <p><strong>Ses denme 1 2 3... 💖</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openEnvelope() {
+      document.querySelector('.envelope-container').classList.toggle('open');
+    }
+  </script>
+
 </body>
 </html>
